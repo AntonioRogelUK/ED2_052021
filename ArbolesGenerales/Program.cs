@@ -6,7 +6,10 @@ namespace ArbolesGenerales
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ArbolGeneral arbol = new ArbolGeneral("A");
+            
+
+            Console.WriteLine(arbol.Raiz.Dato);
         }
     }
 }
