@@ -25,7 +25,10 @@ namespace ArbolesGenerales
 
             Nodo nodoL = arbol.InsertarNodo("L", nodoH);
 
-            Console.WriteLine(arbol.Raiz.Dato);
+
+            string elArbol = arbol.ObtenerArbol();
+
+            Console.WriteLine(elArbol);
         }
     }
 }
