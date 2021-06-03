@@ -16,7 +16,7 @@ namespace ArbolesGenerales
             raiz = new Nodo(dato);
         }
 
-        public Nodo InsertarNodo(string dato, Nodo nodoPadre) 
+        public Nodo Insertar(string dato, Nodo nodoPadre) 
         {
             if (string.IsNullOrWhiteSpace(dato)) 
             {
@@ -82,6 +82,39 @@ namespace ArbolesGenerales
 
             Recorrer(nodo, ref posicion, ref datos);
             return datos;
+        }
+
+        public Nodo Buscar(string dato, Nodo nodoBusqueda = null) 
+        {
+            if (nodoBusqueda == null) 
+            {
+                nodoBusqueda = raiz;
+            }
+
+            if (nodoBusqueda.Dato.ToUpper() == dato.ToUpper()) 
+            {
+                return nodoBusqueda;
+            }
+
+            if (nodoBusqueda.Hijo != null) 
+            {
+                Nodo nodoEncontrado = Buscar(dato, nodoBusqueda.Hijo);
+                if (nodoEncontrado != null) 
+                {
+                    return nodoEncontrado;
+                }
+            }
+
+            if (nodoBusqueda.Hermano != null) 
+            {
+                Nodo nodoEncontrado = Buscar(dato, nodoBusqueda.Hermano);
+                if (nodoEncontrado != null) 
+                {
+                    return nodoEncontrado;
+                }
+            }
+
+            return null;
         }
     }
 }
