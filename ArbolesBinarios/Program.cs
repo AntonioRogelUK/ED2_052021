@@ -6,7 +6,7 @@ namespace ArbolesBinarios
     {
         static void Main(string[] args)
         {
-            ArbolBinarioBusqueda abb = new ArbolBinarioBusqueda(5);
+            //ArbolBinarioBusqueda abb = new ArbolBinarioBusqueda(5);
 
             
 
