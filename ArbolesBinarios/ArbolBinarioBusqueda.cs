@@ -48,5 +48,45 @@ namespace ArbolesBinarios
                 Insertar(dato, nodo.SubArbolIzquierdo);
             }
         }
+
+        private void RecorrerArbol(Nodo nodo, ref string recorrido) 
+        {
+            if (nodo != null) 
+            {
+                //string raiz = (datos == string.Empty) ? "Raiz" : string.Empty;
+                
+                string raiz = string.Empty;
+                if (recorrido == string.Empty)
+                {
+                    raiz = "Raiz";
+                }
+
+                recorrido += $"{raiz}{nodo.Dato, 5}\n";
+
+                if (nodo.SubArbolIzquierdo != null) 
+                {
+                    recorrido += $"{nodo.Dato, -5}<- ";
+                    RecorrerArbol(nodo.SubArbolIzquierdo, ref recorrido);
+                }
+
+                if (nodo.SubArbolDerecho != null) 
+                {
+                    recorrido += $"{nodo.Dato, -5}-> ";
+                    RecorrerArbol(nodo.SubArbolDerecho, ref recorrido);
+                }
+            }
+        }
+
+        public string ObtenerArbol(Nodo nodo = null) 
+        {
+            if (nodo == null) 
+            {
+                nodo = this.raiz;
+            }
+
+            string recorrido = string.Empty;
+            RecorrerArbol(nodo, ref recorrido);
+            return recorrido;
+        }
     }
 }
