@@ -94,6 +94,35 @@ namespace ArbolesBinarios
             string coma = (recorrido == string.Empty) ? string.Empty : ",";
             recorrido += $"{coma}{nodo.Dato}";
         }
+        public string Recorrido(Nodo nodo = null,
+           TipoRecorrido tipoRecorrido = TipoRecorrido.Preorden)
+        {
+            if (nodo == null)
+            {
+                nodo = this.raiz;
+            }
+
+            string recorrido = string.Empty;
+
+            switch (tipoRecorrido)
+            {
+                case TipoRecorrido.Preorden:
+                    RecorridoPreorden(nodo, ref recorrido);
+                    break;
+
+                case TipoRecorrido.Inorden:
+                    RecorridoInorden(nodo, ref recorrido);
+                    break;
+
+                case TipoRecorrido.Posorden:
+                    RecorridoPosorden(nodo, ref recorrido);
+                    break;
+
+                default: throw new Exception("Recorrido incorrecto");
+            }
+
+            return $"Tipo recorrido: {tipoRecorrido}: {recorrido}";
+        }
 
         private void RecorridoPreorden(Nodo nodo, ref string recorrido) 
         {
@@ -113,26 +142,40 @@ namespace ArbolesBinarios
             }
         }
 
-        public string Recorrido(Nodo nodo = null, 
-            TipoRecorrido tipoRecorrido = TipoRecorrido.Preorden) 
+        private void RecorridoInorden(Nodo nodo, ref string recorrido) 
         {
-            if (nodo == null) 
+            if (nodo != null) 
             {
-                nodo = this.raiz;
+                if (nodo.SubArbolIzquierdo != null) 
+                {
+                    RecorridoInorden(nodo.SubArbolIzquierdo, ref recorrido);
+                }
+
+                AgregarDato(nodo, ref recorrido);
+
+                if (nodo.SubArbolDerecho != null) 
+                {
+                    RecorridoInorden(nodo.SubArbolDerecho, ref recorrido);
+                }
             }
+        }
 
-            string recorrido = string.Empty;
-
-            switch (tipoRecorrido) 
+        private void RecorridoPosorden(Nodo nodo, ref string recorrido) 
+        {
+            if (nodo != null) 
             {
-                case TipoRecorrido.Preorden:
-                    RecorridoPreorden(nodo, ref recorrido);
-                    break;
+                if (nodo.SubArbolIzquierdo != null) 
+                {
+                    RecorridoPosorden(nodo.SubArbolIzquierdo, ref recorrido);
+                }
 
-                default: throw new Exception("Recorrido incorrecto");
+                if (nodo.SubArbolDerecho != null) 
+                {
+                    RecorridoPosorden(nodo.SubArbolDerecho, ref recorrido);
+                }
+
+                AgregarDato(nodo, ref recorrido);
             }
-
-            return $"Tipo recorrido: {tipoRecorrido}: {recorrido}";
         }
     }
 }

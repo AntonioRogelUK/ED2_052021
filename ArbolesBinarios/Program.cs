@@ -19,7 +19,9 @@ namespace ArbolesBinarios
 
 
             Console.WriteLine("");
-            Console.WriteLine(abb.Recorrido());
+            Console.WriteLine(abb.Recorrido(tipoRecorrido: ArbolBinarioBusqueda.TipoRecorrido.Preorden));
+            Console.WriteLine(abb.Recorrido(tipoRecorrido: ArbolBinarioBusqueda.TipoRecorrido.Inorden));
+            Console.WriteLine(abb.Recorrido(tipoRecorrido: ArbolBinarioBusqueda.TipoRecorrido.Posorden));
         }
     }
 }
