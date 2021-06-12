@@ -16,6 +16,10 @@ namespace ArbolesBinarios
             }
 
             Console.WriteLine(abb.ObtenerArbol());
+
+
+            Console.WriteLine("");
+            Console.WriteLine(abb.Recorrido());
         }
     }
 }
